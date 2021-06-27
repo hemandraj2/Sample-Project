@@ -1,0 +1,57 @@
+<span class="loader-icon" *ngIf="showLoader"></span>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="col-12 col-sm-12 col-md-12">
+                <div class="w-100">
+                    <span class="back_icon" routerLink="/posts"></span>
+                </div>
+                <div class="post_box" *ngIf="postData">
+                    <div class="post_title">
+                        <h2>{{postData.title }}</h2>
+                    </div>
+                    <div class="post_content">
+                        <p>{{postData.body}}</p>
+                    </div>
+                    <div class="post_title" (click)="switchviewComment()">
+                        <h2>
+                            Comments
+                            <span [ngClass]="viewComments?'upArrow':'downArrow'"></span>
+                        </h2>
+                    </div>
+                    <div *ngIf="viewComments">
+                        <div class="post_content comment_item" *ngFor="let comment of postComments" [ngClass]="comment.id%2==0?'comment1':'comment2'">
+                            <h3>
+                                {{comment.name}},
+                                <span class="post_comment_email">
+                                    {{comment.email}}
+                                </span>
+                            </h3>
+                            <p>{{comment.body}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade mt-5" id="errorModal" #errorModal>
+    <div class="modal-dialog">
+        <div class="post_box modal-content">
+            <div class="modal-body">
+                <h2 class="modal-title text-center">Warning</h2>
+                <div class="mt-5 mb-5 float-left">
+                    <p class="mt-5 mb-5 text-center">
+                        Something went wrong with fetching posts. Please retry after some time. Sorry for the
+                        inconvenience
+                        occured.
+                    </p>
+                </div>
+                <button type="button" (click)="routeToPost()" class="form-control border w-50 mx-auto"  data-dismiss="modal">
+                    Go to posts
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

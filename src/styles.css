@@ -1,1 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
+@import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+.loader-icon{
+    background-image: url('./assets/img/loader.gif');
+    width: 100%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    float: right;
+    height: 100%;
+    position: absolute;
+    opacity: 0.5;
+}

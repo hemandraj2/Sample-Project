@@ -1,0 +1,20 @@
+h1{
+    font-size: 26px;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: 700;
+    line-height: 24px;
+    margin: 0px;
+    color: #303030;
+}
+.text-underline{
+    text-decoration: underline;
+    color:#ef2637;
+    cursor: pointer;
+}
+
+@media(max-width:767.98px){
+    h1{
+        font-size: 21px;
+        line-height: 22px;
+    }
+}

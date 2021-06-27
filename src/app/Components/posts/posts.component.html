@@ -1,0 +1,72 @@
+<span class="loader-icon" *ngIf="showLoader"></span>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12" *ngIf="dataAvailable">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-9 col-xl-9 left_screen">
+                <div class="post_box" *ngFor="let post of displayArray" (click)="goToDetails(post.id)">
+                    <div class="post_title">
+                        <span class="user_icon"></span>
+                        <h2 class="d-none d-sm-none d-md-none d-lg-block d-xl-block">{{post.title | titleFormat:45}}
+                        </h2>
+                        <h2 class="d-none d-sm-none d-md-block d-lg-none d-xl-none">{{post.title | titleFormat:30}}</h2>
+                        <h2 class="d-block d-sm-block d-md-none d-lg-none d-xl-none">{{post.title | titleFormat:20}}
+                        </h2>
+                    </div>
+                    <div class="post_content">
+                        <p>{{post.body}}</p>
+                    </div>
+                </div>
+                <div>
+                    <span class="pagination_box" (click)="previousPage()"><<</span>
+                    <span class="pagination_box" (click)="loadPage(currentPage-2)" *ngIf="currentPage==noOfPage">{{currentPage-2}}</span>
+                    <span class="pagination_box" (click)="loadPage(currentPage-1)" *ngIf="currentPage!=1">{{currentPage-1}}</span>
+                    <span class="pagination_box current_page" (click)="loadPage(currentPage)">{{currentPage}}</span>
+                    <span class="pagination_box" (click)="loadPage(currentPage+1)" *ngIf="currentPage!=noOfPage">{{currentPage+1}}</span>
+                    <span class="pagination_box" (click)="loadPage(currentPage+2)" *ngIf="currentPage==1">{{currentPage+2}}</span>
+                    <span class="pagination_box" (click)="nextPage()">>></span>
+                </div>
+            </div>
+            <div class="d-none d-sm-none d-md-none d-lg-block col-lg-3 col-xl-3 right_screen">
+                <div class="count_box">
+                    <div class="count_data">
+                        <h2>
+                            <span class="count_text">
+                                Total Posts
+                            </span>
+                            <span class="count_digit">
+                                {{postArray.length}}
+                            </span>
+                        </h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12" *ngIf="!dataAvailable">
+            <h1 class="text-center mt-5" (click)="getAllPosts()">
+                No data available
+                <span class="text-underline">
+                    click to reload
+                </span>
+            </h1>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade mt-5" id="errorModal" #errorModal>
+    <div class="modal-dialog">
+        <div class="post_box modal-content">
+            <div class="modal-body">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h2 class="modal-title text-center">Warning</h2>
+                <div class="mt-5 mb-5 float-left">
+                    <p class="mt-5 mb-5 text-center">
+                        Something went wrong with fetching posts. Please retry after some time. Sorry for the
+                        inconvenience
+                        occured.
+                    </p>
+                </div>
+                <button type="button" class="form-control border w-50 mx-auto" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
